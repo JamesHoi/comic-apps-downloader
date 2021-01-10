@@ -23,7 +23,7 @@
 [![s1qQcF.png](https://s3.ax1x.com/2021/01/11/s1qQcF.png)](https://imgchr.com/i/s1qQcF)
 
 然后让手机和电脑同一网络下并设置抓包代理，服务器ip为电脑，端口为软件设置时所填  
-<img src="https://s3.ax1x.com/2021/01/11/s1qnhV.png" alt="s1qnhV.png" border="0" style="zoom:25%"/>  
+[![s1qd1O.png](https://s3.ax1x.com/2021/01/11/s1qd1O.png)](https://imgchr.com/i/s1qd1O)
 
 当前测试手机为`Android 10`下安装`HttpCanary`、`平行空间`且安装信任证书  
 （貌似还需要安装`mitmproxy`证书，自行百度）  
