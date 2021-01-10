@@ -123,3 +123,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# my ignored files
+apk_backup/
+Build/
+Release/
+setup.py
