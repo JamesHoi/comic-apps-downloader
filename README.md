@@ -33,4 +33,7 @@
 [![s1qKpT.png](https://s3.ax1x.com/2021/01/11/s1qKpT.png)](https://imgchr.com/i/s1qKpT)
 [![s1qM1U.png](https://s3.ax1x.com/2021/01/11/s1qM1U.png)](https://imgchr.com/i/s1qM1U)
 
-
+# TODO
+- [ ] 没有前置代理的情况
+- [ ] 解决app判断为虚拟机问题
+- [ ] 若没有编写相应app程序则抓取所有图片
