@@ -1,9 +1,10 @@
 from threading import Thread
+from multiprocessing import Process
 import socket, math, re, json
 from download import downloadAll
 
 
-class Download_Thread(Thread):
+class Download_Thread(Process):
     def __init__(self, socket_port,thread_num):
         super(Download_Thread, self).__init__()
         self.s = socket.socket()

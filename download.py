@@ -1,15 +1,18 @@
-import os,shutil,requests
+import os,shutil,requests,time
 from PIL import Image
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-from concurrent.futures import as_completed,ThreadPoolExecutor
+from concurrent.futures import as_completed,ThreadPoolExecutor,ProcessPoolExecutor
 
 
 def downloadFile(url, path, name):
-    try:
-        r = requests.get(url, stream=True, verify=False)
-        if r.status_code == 404: return False
-    except requests.exceptions.ConnectionError: return False
+    while True:
+        try:
+            r = requests.get(url, stream=True, verify=False,timeout=5)
+            if r.status_code == 404: return False
+            break
+        except requests.exceptions.ConnectionError: time.sleep(2)
+        except requests.exceptions.ReadTimeout: time.sleep(2)
     with open(path + name, 'wb') as f: f.write(r.content)
     return True
 
@@ -47,9 +50,10 @@ def downloadComic(url,folder_name,page,img_type="webp",zero_fill=3):
 def downloadAll(urls,thread_num,img_type="webp",path_name="img",is_pack=True):
     folder_name = downloadPath(path_name=path_name)
     if not os.path.exists(folder_name): os.mkdir(folder_name)
-    executor = ThreadPoolExecutor(max_workers=thread_num)
+    executor = ProcessPoolExecutor(max_workers=thread_num)  # ThreadPoolExecutor(max_workers=thread_num)
     all_task = [executor.submit(downloadComic,urls[i],folder_name,i
                 ,img_type=img_type,zero_fill=3 if len(urls)<=100 else 4) for i in range(len(urls))]
+    for i in range(len(urls)): print(str(i).zfill(3)+".webp: "+ urls[i])  # 方便手动补全
     print("初始化完成，开始下载")
     for future in as_completed(all_task): pass # 等待线程完成
     if is_pack:

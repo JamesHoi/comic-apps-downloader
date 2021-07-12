@@ -24,5 +24,5 @@ class Mitm_Listener(Thread):
         print("已启动抓包监听程序")
         asyncio.set_event_loop(asyncio.new_event_loop())
         mitmdump(["-p", self.port, "--mode", "upstream:http://127.0.0.1:" + self.front_port, "-s",
-                  program_dir() + "listener.py"])
+                  program_dir() + "listener.py","-q"])
         # -q console will not show
